@@ -4,6 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <html>
     <head>
         <title>Cookie Clicker Bakeshop</title>
@@ -11,8 +12,15 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>TODO write content</div>
-        <img id="ccbs" src="img/ccbs.png" alt=""/>
+        <img src="ccbs.png" alt="" width="500" height="500"/>
+        
+        
+        
+        <form action="Control" method="POST">
+            <input type="text" name="amount" placeholder="Enter amount"/>
+            <input type="hidden" name="origin" value="addmoney" />
+            <input type="submit" value="Add money to account"/>
+        </form>
         <form action="Control" method="POST">
             <form id="addProduct" action="Control" method="POST">
                 <input type="hidden" name="origin" value="addProduct">
@@ -23,14 +31,14 @@ and open the template in the editor.
                             <td><select name="bottom" id="bottomSelect">
                                     <option value="0">Choose bottom</option>
 
+                                    <option value="1">Chocolate: 5.0</option><option value="2">Vanilla: 5.0</option><option value="3">Nutmeg: 5.0</option><option value="4">Pistacio: 6.0</option><option value="5">Almond: 7.0</option>
 
-                                    <option value="1">Chocolate: 5.0</option><option value="2">Blueberry: 5.0</option><option value="3">Raspberry: 5.0</option><option value="4">Crispy: 6.0</option><option value="5">Strawberry: 6.0</option><option value="6">Rum/Raisin: 7.0</option><option value="7">Orange: 8.0</option><option value="8">Lemon: 8.0</option><option value="9">Blue cheese: 9.0</option>
                                 </select></td>
                             <td><select name="topping" id="toppingSelect">
                                     <option value="0">Choose topping</option>
 
 
-                                    <option value="1">Chocolate: 5.0</option><option value="2">Vanilla: 5.0</option><option value="3">Nutmeg: 5.0</option><option value="4">Pistacio: 6.0</option><option value="5">Almond: 7.0</option>
+                                    <option value="1">Chocolate: 5.0</option><option value="2">Blueberry: 5.0</option><option value="3">Raspberry: 5.0</option><option value="4">Crispy: 6.0</option><option value="5">Strawberry: 6.0</option><option value="6">Rum/Raisin: 7.0</option><option value="7">Orange: 8.0</option><option value="8">Lemon: 8.0</option><option value="9">Blue cheese: 9.0</option>
                                 </select></td>
                             <td><input type="text" name="qty" placeholder="quantity" id="qtyInput"></td>
                             <td><input type="submit" name="submit" value="Add to cart"></td><td><span id="errorContainer"></span></td>
