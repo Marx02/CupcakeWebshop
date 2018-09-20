@@ -27,7 +27,7 @@ public class DataMapper {
                     + "FROM `users`"
                     + "WHERE password = `"+password+"`"
                     + "AND username = `"+uName+"`;";
-            ResultSet res = st.getResultSet();
+            ResultSet res = st.executeQuery(query);
             while(res.next()){
                 aUser = new User(uName,res.getInt("balance"));
             }
@@ -36,5 +36,20 @@ public class DataMapper {
         }
         return aUser;
     }
-    
+    public int getBottomPrice(String part){
+        int price;
+        try{
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT `price`"
+                    + "FROM `bottoms`"
+                    + "WHERE variant =`"+part+"`;";
+            ResultSet res = st.executeQuery(query);
+            price = res.getInt("price");
+        } catch (Exception ex) {
+            return 0;
+        }
+        return price;
+    }
 }
