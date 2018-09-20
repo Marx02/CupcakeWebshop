@@ -68,4 +68,17 @@ public class DataMapper {
         }
         return price;
     }
+    public void updateBalance(User aUser){
+        try{
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "UPDATE `users`"
+                    + "SET balance ="+aUser.getBalance()
+                    + "WHERE username =`"+aUser.getuName()+"`;";
+            ResultSet res = st.executeQuery(query);
+        } catch (Exception ex){
+            System.out.println("Balance update failed!");
+        }
+    }
 }
