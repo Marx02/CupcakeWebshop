@@ -52,4 +52,20 @@ public class DataMapper {
         }
         return price;
     }
+    public int getToppingPrice(String part){
+        int price;
+        try{
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT `price`"
+                    + "FROM `toppings`"
+                    + "WHERE variant =`"+part+"`;";
+            ResultSet res = st.executeQuery(query);
+            price = res.getInt("price");
+        } catch (Exception ex) {
+            return 0;
+        }
+        return price;
+    }
 }
