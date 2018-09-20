@@ -13,5 +13,10 @@ and open the template in the editor.
     <body>
         <div>TODO write content</div>
         <img id="ccbs" src="img/ccbs.png" alt=""/>
+        <form action="Control" method="POST">
+            <input type="text" name="amount" placeholder="Enter amount"/>
+            <input type="hidden" name="origin" value="addmoney" />
+            <input type="submit" value="Add money to account"/>
+        </form>
     </body>
 </html>
