@@ -6,6 +6,8 @@
 package DBConnector;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,12 +18,38 @@ import java.util.logging.Logger;
 public class DataMapper {
     
     public User getUserInfo(String uName, String password){
+        User aUser = null;
         try {
             Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT `balance`"
+                    + "FROM `users`"
+                    + "WHERE password = `"+password+"`"
+                    + "AND username = `"+uName+"`;";
+            ResultSet res = st.executeQuery(query);
+            while(res.next()){
+                aUser = new User(uName,res.getInt("balance"));
+            }
         } catch (Exception ex) {
-            Logger.getLogger(DataMapper.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        User a = new User("asdasd",12);
-        return a;
+        return aUser;
+    }
+    public int getBottomPrice(String part){
+        int price;
+        try{
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT `price`"
+                    + "FROM `bottoms`"
+                    + "WHERE variant =`"+part+"`;";
+            ResultSet res = st.executeQuery(query);
+            price = res.getInt("price");
+        } catch (Exception ex) {
+            return 0;
+        }
+        return price;
     }
 }
