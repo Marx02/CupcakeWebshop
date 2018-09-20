@@ -21,5 +21,7 @@ public class DataMapper {
         } catch (Exception ex) {
             Logger.getLogger(DataMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
+        User a = new User("asdasd",12);
+        return a;
     }
 }
