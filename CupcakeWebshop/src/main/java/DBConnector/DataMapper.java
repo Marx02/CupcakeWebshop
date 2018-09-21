@@ -40,39 +40,43 @@ public class DataMapper {
         return aUser;
     }
 
-    public CupcakeBottom getBottom(String part) {
+    public CupcakeBottom getBottom(int bid) {
         int price;
+        String variant;
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT `price`"
+                    = "SELECT `price`, `variant`"
                     + "FROM `bottoms`"
-                    + "WHERE variant =`" + part + "`;";
+                    + "WHERE bid =`" + bid + "`;";
             ResultSet res = st.executeQuery(query);
             price = res.getInt("price");
+            variant = res.getString("variant");
         } catch (Exception ex) {
             return null;
         }
-        CupcakeBottom a = new CupcakeBottom(part, price);
+        CupcakeBottom a = new CupcakeBottom(variant, price);
         return a;
     }
 
-    public CupcakeTopping getTopping(String part) {
+    public CupcakeTopping getTopping(int tid) {
         int price;
+        String variant;
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT `price`"
+                    = "SELECT `price`, `variant`"
                     + "FROM `toppings`"
-                    + "WHERE variant =`" + part + "`;";
+                    + "WHERE variant =`" + tid + "`;";
             ResultSet res = st.executeQuery(query);
             price = res.getInt("price");
+            variant = res.getString("variant");
         } catch (Exception ex) {
             return null;
         }
-        CupcakeTopping b = new CupcakeTopping(part, price);
+        CupcakeTopping b = new CupcakeTopping(variant, price);
         return b;
     }
 
