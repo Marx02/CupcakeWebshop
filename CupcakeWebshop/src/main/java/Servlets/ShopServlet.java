@@ -55,7 +55,7 @@ public class ShopServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
             DataMapper dm = new DataMapper();
-            Cupcake lelCup = new Cupcake(dm.getTopping(top),dm.getBottom(bot));
+            Cupcake lelCup = new Cupcake(dm.getTopping(Integer.parseInt(top)),dm.getBottom(Integer.parseInt(bot)));
         }
     }
 
