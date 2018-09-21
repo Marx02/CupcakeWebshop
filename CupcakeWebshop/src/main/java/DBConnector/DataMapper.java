@@ -30,7 +30,7 @@ public class DataMapper {
                 aUser = new User(uName,res.getInt("balance"));
             }
         } catch (Exception ex) {
-            aUser = new User(null,0);
+            aUser = new User("",0);
             return aUser;
         }
         return aUser;
