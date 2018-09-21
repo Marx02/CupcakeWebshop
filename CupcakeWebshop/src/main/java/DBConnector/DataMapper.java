@@ -14,6 +14,11 @@ import java.sql.Statement;
  * @author Esben
  */
 public class DataMapper {
+    public static void main(String[] args) {
+        DataMapper m = new DataMapper();
+        User e = m.getUserInfo("Esben", "123");
+        System.out.println(e.getuName());
+    }
 
     public User getUserInfo(String uName, String password) {
         User aUser = null;
@@ -21,9 +26,7 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT `password`"
-                    + "FROM `users`"
-                    + "WHERE `username` =" + uName + ";";
+                    = "SELECT password FROM users WHERE username =" + uName ;
             ResultSet res = st.executeQuery(query);
             while (res.next()) {
                 String bal = res.getString("password");
@@ -35,7 +38,8 @@ public class DataMapper {
             }
         } catch (Exception ex) {
             aUser = new User("Error", 0);
-            return aUser;
+            ex.printStackTrace();
+            
         }
         return aUser;
     }
