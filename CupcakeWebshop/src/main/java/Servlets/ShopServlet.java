@@ -36,6 +36,8 @@ public class ShopServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+                ShoppingCart sc = new ShoppingCart();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -50,12 +52,12 @@ public class ShopServlet extends HttpServlet {
             out.println("<title>Servlet ShopServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + bot+ top + qty + "</h1>"
-            );
+            out.println("<h1>" + bot+ top + qty + "</h1>");
             out.println("</body>");
             out.println("</html>");
             DataMapper dm = new DataMapper();
             Cupcake lelCup = new Cupcake(dm.getTopping(Integer.parseInt(top)),dm.getBottom(Integer.parseInt(bot)));
+            sc.addCupcake(lelCup, qty);
         }
     }
 
