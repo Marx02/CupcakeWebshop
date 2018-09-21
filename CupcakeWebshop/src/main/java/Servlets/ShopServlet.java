@@ -19,7 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import DBConnector.*;
 /**
  *
  * @author caspe
@@ -54,6 +54,8 @@ public class ShopServlet extends HttpServlet {
             );
             out.println("</body>");
             out.println("</html>");
+            DataMapper dm = new DataMapper();
+            Cupcake lelCup = new Cupcake(dm.getTopping(top),dm.getBottom(bot));
         }
     }
 
