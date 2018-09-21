@@ -14,8 +14,8 @@ import java.sql.Statement;
  * @author Esben
  */
 public class DataMapper {
-    
-    public User getUserInfo(String uName, String password){
+
+    public User getUserInfo(String uName, String password) {
         User aUser = null;
         try {
             Connection c = new DBConnector().getConnection();
@@ -23,64 +23,71 @@ public class DataMapper {
             String query
                     = "SELECT `password`"
                     + "FROM `users`"
-                    + "WHERE `username` ="+uName+";";
+                    + "WHERE `username` =" + uName + ";";
             ResultSet res = st.executeQuery(query);
-            while(res.next()){
+            while (res.next()) {
                 String bal = res.getString("password");
-                if(bal.equals(password)){
-                    aUser = new User("Works",100);
+                if (bal.equals(password)) {
+                    aUser = new User("Works", 100);
+                } else {
+                    aUser = new User("Wrong pass", 0);
                 }
-                else aUser = new User("Wrong pass",0);
             }
         } catch (Exception ex) {
-            aUser = new User("Error",0);
+            aUser = new User("Error", 0);
             return aUser;
         }
         return aUser;
     }
-    public int getBottomPrice(String part){
+
+    public CupcakeBottom getBottom(String part) {
         int price;
-        try{
+        try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
                     = "SELECT `price`"
                     + "FROM `bottoms`"
-                    + "WHERE variant =`"+part+"`;";
+                    + "WHERE variant =`" + part + "`;";
             ResultSet res = st.executeQuery(query);
             price = res.getInt("price");
         } catch (Exception ex) {
-            return 0;
+            return null;
         }
-        return price;
+        CupcakeBottom a = new CupcakeBottom(part, price);
+        return a;
     }
-    public int getToppingPrice(String part){
+
+    public CupcakeTopping getTopping(String part) {
         int price;
-        try{
+        try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
                     = "SELECT `price`"
                     + "FROM `toppings`"
-                    + "WHERE variant =`"+part+"`;";
+                    + "WHERE variant =`" + part + "`;";
             ResultSet res = st.executeQuery(query);
             price = res.getInt("price");
         } catch (Exception ex) {
-            return 0;
+            return null;
         }
-        return price;
+        CupcakeTopping b = new CupcakeTopping(part, price);
+        return b;
     }
-    public void updateBalance(User aUser){
-        try{
+
+    public void updateBalance(User aUser) {
+        try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
                     = "UPDATE `users`"
-                    + "SET balance ="+aUser.getBalance()
-                    + "WHERE username =`"+aUser.getuName()+"`;";
+                    + "SET balance =" + aUser.getBalance()
+                    + "WHERE username =`" + aUser.getuName() + "`;";
             ResultSet res = st.executeQuery(query);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Balance update failed!");
         }
     }
+
 }

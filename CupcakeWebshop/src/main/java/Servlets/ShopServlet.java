@@ -41,16 +41,16 @@ public class ShopServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
+            String bot = request.getParameter("bottom");
+            String top = request.getParameter("topping");
+            int qty = Integer.parseInt(request.getParameter("qty"));
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet ShopServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + request.getParameter("bottom"));
-            // out.print("<img src='ccbs.png' alt='image' />");
-            out.println("<h1>" + html() + "</h1>"
+            out.println("<h1>" + bot+ top + qty + "</h1>"
             );
             out.println("</body>");
             out.println("</html>");
