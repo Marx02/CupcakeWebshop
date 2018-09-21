@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ShoppingCart {
 
-    List<Cupcake> cupcakes;
+    List<Cupcake> cupcakes;//Map det til at key er cupcake og amount er hvad den henviser til
 
     public ShoppingCart() {
     }

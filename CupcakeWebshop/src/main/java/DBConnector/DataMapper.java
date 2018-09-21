@@ -14,11 +14,11 @@ import java.sql.Statement;
  * @author Esben
  */
 public class DataMapper {
-    public static void main(String[] args) {
-        DataMapper m = new DataMapper();
-        User e = m.getUserInfo("Esben", "123");
-        System.out.println(e.getuName());
-    }
+//    public static void main(String[] args) {
+//        DataMapper m = new DataMapper();
+//        User e = m.getUserInfo("Esben", "123");
+//        System.out.println(e.getuName());
+//    }
 
     public User getUserInfo(String uName, String password) {
         User aUser = null;
@@ -26,19 +26,19 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT password FROM users WHERE username =" + uName ;
+                    = "SELECT username, pw FROM users WHERE pw =" + password  ;
             ResultSet res = st.executeQuery(query);
             while (res.next()) {
-                String bal = res.getString("password");
-                if (bal.equals(password)) {
+                String bal = res.getString("username");
+                if (bal.equals(uName)) {
                     aUser = new User("Works", 100);
                 } else {
                     aUser = new User("Wrong pass", 0);
                 }
             }
         } catch (Exception ex) {
-            aUser = new User("Error", 0);
-            ex.printStackTrace();
+            aUser = new User("", 0);
+            return aUser;
             
         }
         return aUser;

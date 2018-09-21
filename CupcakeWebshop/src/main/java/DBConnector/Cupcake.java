@@ -13,7 +13,6 @@ public class Cupcake {
 
     public CupcakeTopping topping;
     public CupcakeBottom bottom;
-    public int price = 0;
 
     public Cupcake(CupcakeTopping topping, CupcakeBottom bottom) {
         this.topping = topping;

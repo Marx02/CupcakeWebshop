@@ -58,7 +58,6 @@ public class LoginServlet extends HttpServlet {
             if (us.getuName().equals("")) {
                 response.sendRedirect(request.getContextPath());
             }
-            else out.println(us.getuName());
         }
     }
 
