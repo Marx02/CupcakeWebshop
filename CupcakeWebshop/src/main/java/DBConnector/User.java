@@ -9,7 +9,7 @@ package DBConnector;
  *
  * @author Esben
  */
-class User {
+public class User {
     private String uName;
     private int balance;
 
