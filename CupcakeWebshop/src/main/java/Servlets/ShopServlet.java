@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -46,6 +48,8 @@ public class ShopServlet extends HttpServlet {
             out.println("<title>Servlet ShopServlet</title>");
             out.println("</head>");
             out.println("<body>");
+            out.println("<h1>" + request.getParameter("bottom"));
+            // out.print("<img src='ccbs.png' alt='image' />");
             out.println("<h1>" + html() + "</h1>"
             );
             out.println("</body>");
@@ -80,6 +84,8 @@ public class ShopServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        doGet(request, response);
     }
 
     /**

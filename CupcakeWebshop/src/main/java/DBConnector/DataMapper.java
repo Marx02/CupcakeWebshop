@@ -21,16 +21,19 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT `balance`"
+                    = "SELECT `password`"
                     + "FROM `users`"
-                    + "WHERE password = `"+password+"`"
-                    + "AND username = `"+uName+"`;";
+                    + "WHERE `username` ="+uName+";";
             ResultSet res = st.executeQuery(query);
             while(res.next()){
-                aUser = new User(uName,res.getInt("balance"));
+                String bal = res.getString("password");
+                if(bal.equals(password)){
+                    aUser = new User("Works",100);
+                }
+                else aUser = new User("Wrong pass",0);
             }
         } catch (Exception ex) {
-            aUser = new User("",0);
+            aUser = new User("Error",0);
             return aUser;
         }
         return aUser;
