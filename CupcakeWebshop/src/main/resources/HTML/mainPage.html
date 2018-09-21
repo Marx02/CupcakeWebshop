@@ -13,13 +13,13 @@ and open the template in the editor.
     </head>
     <body>
         <img src="ccbs.png" alt="" width="500" height="500"/>
-        
-        
-        
+
+
+
         <form action="Control" method="POST">
             <input type="text" name="amount" placeholder="Enter amount"/>
             <input type="hidden" name="origin" value="addmoney" />
-            <input type="submit" value="Add money to account"/>
+            <input type="submit" value="Add money to account" formaction="/updateBalance">
         </form>
         <form action="Control" method="POST">
             <form id="addProduct" action="Control" method="POST">

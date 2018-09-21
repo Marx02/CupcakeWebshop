@@ -12,6 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import DBConnector.DataMapper;
+import DBConnector.User;
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Files;
+import javax.servlet.RequestDispatcher;
+import static javax.servlet.SessionTrackingMode.URL;
 
 /**
  *
@@ -37,14 +44,23 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Logging in...</h1>");
             out.println("</body>");
             out.println("</html>");
+
+            String user = request.getParameter("username");
+            String pass = request.getParameter("password");
+            DataMapper dm = new DataMapper();
+            User us = dm.getUserInfo(user, pass);
+            if (us.getuName().equals("")) {
+                response.sendRedirect(request.getContextPath());
+            }
         }
     }
+
 //ÆNDRING
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
