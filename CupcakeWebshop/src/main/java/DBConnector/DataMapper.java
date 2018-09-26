@@ -26,18 +26,18 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT username, pw FROM users WHERE pw =" + password  ;
+                    = "SELECT pw FROM users WHERE username = '"+ uName +"';" ;
             ResultSet res = st.executeQuery(query);
             while (res.next()) {
-                String bal = res.getString("username");
-                if (bal.equals(uName)) {
+                String pass = res.getString("pw");
+                if (pass.equals(password)) {
                     aUser = new User("Works", 100);
                 } else {
                     aUser = new User("Wrong pass", 0);
                 }
             }
         } catch (Exception ex) {
-            aUser = new User("", 0);
+            aUser = new User("Error", 0);
             return aUser;
             
         }
