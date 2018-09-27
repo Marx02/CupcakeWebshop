@@ -17,24 +17,27 @@ import java.sql.Statement;
  */
 public class OrderMapper {
 
-    public Order getOrderByID(int orderID, int userID, int price, int qty, String pname, String username, String customername) {
-        Order oID = null;
+    public Order getOrderByID(int oID, int uID, int price, int qty, double tprice, String pname, String uname, String cname) {
+        Order obyID = null;
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
                     = "SELECT * "
                     + "FROM orders "
-                    + "WHERE orderID = '" + oID + "';";
+                    + "WHERE orderID = '"+ oID +"';" ;
             ResultSet res = st.executeQuery(query);
-            userID = res.getInt(orderID);
+            oID = res.getInt("oID");
+            uID = res.getInt("uID");
             price = res.getInt("price");
+            qty = res.getInt("qty");
+            tprice = res.getDouble("tprice");
             pname = res.getString("variant");
+            uname = res.getString("uname");
+            cname = res.getString("cname");
         } catch (Exception ex) {
             return null;
         }
-
-        return oID;
+        return obyID;
     }
-
-}
+}    
