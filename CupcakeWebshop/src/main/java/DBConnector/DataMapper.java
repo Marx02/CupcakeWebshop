@@ -117,7 +117,7 @@ public class DataMapper {
         }
     }
 
-    public boolean insertRecipe(String name, String pass) {
+    public boolean insertUser(String name, String pass) {
         try {
             Connection c = new DBConnector().getConnection();
             Statement stmt = c.createStatement();
