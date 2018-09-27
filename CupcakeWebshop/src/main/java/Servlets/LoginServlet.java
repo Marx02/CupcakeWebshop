@@ -55,7 +55,9 @@ public class LoginServlet extends HttpServlet {
             String pass = request.getParameter("password");
             DataMapper dm = new DataMapper();
             User us = dm.getUserInfo(user, pass);
+            dm.getBalance(us);
             out.println(us.getuName());
+            out.println(us.getBalance());
             if (us.getuName().equals("")) {
                 response.sendRedirect(request.getContextPath());
             }

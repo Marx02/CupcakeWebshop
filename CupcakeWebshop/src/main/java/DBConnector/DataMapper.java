@@ -26,20 +26,20 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT pw FROM users WHERE username = '"+ uName +"';" ;
+                    = "SELECT pw FROM users WHERE username = '" + uName + "';";
             ResultSet res = st.executeQuery(query);
             while (res.next()) {
                 String pass = res.getString("pw");
                 if (pass.equals(password)) {
-                    aUser = new User("Works", 100);
+                    aUser = new User(uName, 100, true);
                 } else {
-                    aUser = new User("Wrong pass", 0);
+                    aUser = new User("Wrong pass", 0, false);
                 }
             }
         } catch (Exception ex) {
-            aUser = new User("Error", 0);
+            aUser = new User("Error", 0, false);
             return aUser;
-            
+
         }
         return aUser;
     }
@@ -95,6 +95,24 @@ public class DataMapper {
             ResultSet res = st.executeQuery(query);
         } catch (Exception ex) {
             System.out.println("Balance update failed!");
+        }
+    }
+
+    public void getBalance(User aUser) {
+        try {
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT balance FROM users"
+                    + "WHERE username = '" + aUser.getuName() + "';";
+
+            ResultSet res = st.executeQuery(query);
+            while (res.next()) {
+                int newBalance = res.getInt("balance");
+                aUser.setBalance(newBalance);
+            }
+        } catch (Exception ex) {
+            System.out.println("Balance get failed!");
         }
     }
 
