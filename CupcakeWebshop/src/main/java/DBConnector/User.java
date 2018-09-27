@@ -12,10 +12,12 @@ package DBConnector;
 public class User {
     private String uName;
     private int balance;
+    private boolean loggedIn;
 
-    public User(String uName, int balance) {
+    public User(String uName, int balance, boolean loggedIn) {
         this.uName = uName;
         this.balance = balance;
+        this.loggedIn = loggedIn;
     }
 
     public String getuName() {
@@ -28,6 +30,14 @@ public class User {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
     
     

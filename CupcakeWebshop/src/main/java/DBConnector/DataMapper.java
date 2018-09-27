@@ -7,6 +7,7 @@ package DBConnector;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -26,20 +27,20 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT pw FROM users WHERE username = '"+ uName +"';" ;
+                    = "SELECT pw FROM users WHERE username = '" + uName + "';";
             ResultSet res = st.executeQuery(query);
             while (res.next()) {
                 String pass = res.getString("pw");
                 if (pass.equals(password)) {
-                    aUser = new User("Works", 100);
+                    aUser = new User(uName, 100, true);
                 } else {
-                    aUser = new User("Wrong pass", 0);
+                    aUser = new User("Wrong pass", 0, false);
                 }
             }
         } catch (Exception ex) {
-            aUser = new User("Error", 0);
+            aUser = new User("Error", 0, false);
             return aUser;
-            
+
         }
         return aUser;
     }
@@ -96,6 +97,40 @@ public class DataMapper {
         } catch (Exception ex) {
             System.out.println("Balance update failed!");
         }
+    }
+
+    public void getBalance(User aUser) {
+        try {
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT balance FROM users"
+                    + "WHERE username = '" + aUser.getuName() + "';";
+
+            ResultSet res = st.executeQuery(query);
+            while (res.next()) {
+                int newBalance = res.getInt("balance");
+                aUser.setBalance(newBalance);
+            }
+        } catch (Exception ex) {
+            System.out.println("Balance get failed!");
+        }
+    }
+
+    public boolean insertUser(String name, String pass) {
+        try {
+            Connection c = new DBConnector().getConnection();
+            Statement stmt = c.createStatement();
+            String comm
+                    = "INSERT INTO `users` (username,pw,balance) "
+                    + "values('" + name + "', '" + pass + "'," + 0 + ");";
+            stmt.execute(comm);
+        } catch (Exception ex) {
+            System.out.println("Error, unable to create user");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 }
