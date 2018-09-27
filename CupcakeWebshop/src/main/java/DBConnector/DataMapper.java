@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,8 +18,8 @@ import java.sql.Statement;
 public class DataMapper {
 //    public static void main(String[] args) {
 //        DataMapper m = new DataMapper();
-//        User e = m.getUserInfo("Esben", "123");
-//        System.out.println(e.getuName());
+//        User c = new User("Casper",420,true);
+//        m.updateBalance(c);
 //    }
 
     public User getUserInfo(String uName, String password) {
@@ -85,17 +86,70 @@ public class DataMapper {
         return b;
     }
 
+    public ArrayList<CupcakeTopping> getAllToppings() {
+        int price;
+        String variant;
+        ArrayList<CupcakeTopping> CTList = new ArrayList();
+        try {
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT *"
+                    + "FROM `toppings`;";
+            
+            ResultSet res = st.executeQuery(query);
+            while(res.next()){
+            price = res.getInt("price");
+            variant = res.getString("variant");
+            CupcakeTopping b = new CupcakeTopping(variant, price);
+            CTList.add(b);
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+        
+        return CTList;
+    }
+
+        public ArrayList<CupcakeBottom> getAllBottoms() {
+        int price;
+        String variant;
+        ArrayList<CupcakeBottom> CBList = new ArrayList();
+        try {
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT *"
+                    + "FROM `bottoms`;";
+            
+            ResultSet res = st.executeQuery(query);
+            while(res.next()){
+            price = res.getInt("price");
+            variant = res.getString("variant");
+            CupcakeBottom t = new CupcakeBottom(variant, price);
+            CBList.add(t);
+            }
+        } catch (Exception ex) {
+            return null;
+        }
+        
+        return CBList;
+    }
+
+    
+    
     public void updateBalance(User aUser) {
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "UPDATE `users`"
-                    + "SET balance =" + aUser.getBalance()
-                    + "WHERE username =`" + aUser.getuName() + "`;";
-            ResultSet res = st.executeQuery(query);
+                    = "UPDATE users"
+                    + " SET balance = " + aUser.getBalance()
+                    + " WHERE username = '" + aUser.getuName() + "';";
+            st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println("Balance update failed!");
+            ex.printStackTrace();
         }
     }
 
