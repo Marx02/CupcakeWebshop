@@ -11,32 +11,24 @@ package Orders;
  */
 public class Order {
     
-    int oID; //Order id
-    int uID; //User id
-    int price; //Price per cupcake
-    int qty; //Quantity
-    double tprice; //Total price
-    String pname; //Productname
-    String uname; //Username
-    String cname; //Customername
+    private int oID; //Order id
+    private int price; //Price per cupcake
+    private int qty; //Quantity
+    private double tprice; //Total price
+    private String pname; //Productname
+    private String uname; //Username
 
-    public Order(int oID, int uID, int price, int qty, double tprice, String pname, String uname, String cname) {
+    public Order(int oID, int price, int qty, double tprice, String pname, String uname) {
         this.oID = oID;
-        this.uID = uID;
         this.price = price;
         this.qty = qty;
         this.tprice = tprice;
         this.pname = pname;
         this.uname = uname;
-        this.cname = cname;
     }
 
     public int getoID() {
         return oID;
-    }
-
-    public int getuID() {
-        return uID;
     }
 
     public int getPrice() {
@@ -58,9 +50,4 @@ public class Order {
     public String getUname() {
         return uname;
     }
-
-    public String getCname() {
-        return cname;
-    }
-    
 }
