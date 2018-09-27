@@ -17,32 +17,8 @@ import java.sql.Statement;
  */
 public class OrderMapper {
 
-    public User getUserInfo(String uName, String password) {
-        User aUser = null;
-        try {
-            Connection c = new DBConnector().getConnection();
-            Statement st = c.createStatement();
-            String query
-                    = "SELECT pw FROM users WHERE username = '" + uName + "';";
-            ResultSet res = st.executeQuery(query);
-            while (res.next()) {
-                String pass = res.getString("pw");
-                if (pass.equals(password)) {
-                    aUser = new User("Works", 100);
-                } else {
-                    aUser = new User("Wrong pass", 0);
-                }
-            }
-        } catch (Exception ex) {
-            aUser = new User("Error", 0);
-            return aUser;
-
-        }
-        return aUser;
-    }
-
-    public Order getOrderByID(int orderID, int userID, int price, int qty, String pname, String username, String customername) {
-        Order oID = null;
+    public Order getOrderByID(int oID, int uID, int price, int qty, double tprice, String pname, String uname, String cname) {
+        Order obyID = null;
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
@@ -51,17 +27,17 @@ public class OrderMapper {
                     + "FROM orders "
                     + "WHERE orderID = '"+ oID +"';" ;
             ResultSet res = st.executeQuery(query);
-            userID = res.getInt(orderID);
+            oID = res.getInt("oID");
+            uID = res.getInt("uID");
             price = res.getInt("price");
+            qty = res.getInt("qty");
+            tprice = res.getDouble("tprice");
             pname = res.getString("variant");
+            uname = res.getString("uname");
+            cname = res.getString("cname");
         } catch (Exception ex) {
             return null;
         }
-            
-        
-        
-        return oID;
+        return obyID;
     }
-    
-    
-}
+}    
