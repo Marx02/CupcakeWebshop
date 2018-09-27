@@ -58,6 +58,9 @@ public class LoginServlet extends HttpServlet {
             dm.getBalance(us);
             out.println(us.getuName());
             out.println(us.getBalance());
+            if(us.isLoggedIn()){
+                response.sendRedirect("http://localhost:8084/CupcakeWebshop/mainPage.jsp");
+            }
             if (us.getuName().equals("")) {
                 response.sendRedirect(request.getContextPath());
             }
