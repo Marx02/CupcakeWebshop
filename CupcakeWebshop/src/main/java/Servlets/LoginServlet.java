@@ -49,8 +49,9 @@ public class LoginServlet extends HttpServlet {
             out.println(us.getuName());
             out.println(us.getBalance());
             if (us.isLoggedIn()) {
-                request.setAttribute("user", us);
-                request.getRequestDispatcher("mainPage.jsp").forward(request, response);
+                
+                request.getSession().setAttribute("user", us);
+                request.getRequestDispatcher("ShopServlet").forward(request, response);
                 response.sendRedirect("http://localhost:8084/CupcakeWebshop/mainPage.jsp");
             }
             if (us.getuName().equals("")) {
