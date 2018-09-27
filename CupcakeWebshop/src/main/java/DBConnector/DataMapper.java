@@ -7,6 +7,7 @@ package DBConnector;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -114,6 +115,22 @@ public class DataMapper {
         } catch (Exception ex) {
             System.out.println("Balance get failed!");
         }
+    }
+
+    public boolean insertRecipe(String name, String pass) {
+        try {
+            Connection c = new DBConnector().getConnection();
+            Statement stmt = c.createStatement();
+            String comm
+                    = "INSERT INTO `users` (username,pw,balance) "
+                    + "values('" + name + "', '" + pass + "'," + 0 + ");";
+            stmt.execute(comm);
+        } catch (Exception ex) {
+            System.out.println("Error, unable to create user");
+            ex.printStackTrace();
+            return false;
+        }
+        return true;
     }
 
 }
