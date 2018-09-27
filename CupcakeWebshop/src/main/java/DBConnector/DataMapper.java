@@ -17,8 +17,8 @@ import java.sql.Statement;
 public class DataMapper {
 //    public static void main(String[] args) {
 //        DataMapper m = new DataMapper();
-//        User e = m.getUserInfo("Esben", "123");
-//        System.out.println(e.getuName());
+//        User c = new User("Casper",420,true);
+//        m.updateBalance(c);
 //    }
 
     public User getUserInfo(String uName, String password) {
@@ -90,12 +90,13 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "UPDATE `users`"
-                    + "SET balance =" + aUser.getBalance()
-                    + "WHERE username =`" + aUser.getuName() + "`;";
-            ResultSet res = st.executeQuery(query);
+                    = "UPDATE users"
+                    + " SET balance = " + aUser.getBalance()
+                    + " WHERE username = '" + aUser.getuName()+"';";
+            st.executeUpdate(query);
         } catch (Exception ex) {
             System.out.println("Balance update failed!");
+            ex.printStackTrace();
         }
     }
 
