@@ -28,6 +28,8 @@ import DBConnector.*;
 @WebServlet(name = "ShopServlet", urlPatterns = {"/ShopServlet"})
 public class ShopServlet extends HttpServlet {
 
+    DataMapper dm = new DataMapper();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,6 +46,10 @@ public class ShopServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
+            List<CupcakeTopping> ct = dm.getAllToppings();
+            request.getSession().setAttribute("toppings", ct);
+            List<CupcakeBottom> cb = dm.getAllBottoms();
+            request.getSession().setAttribute("bottoms", cb);
             request.getRequestDispatcher("mainPage.jsp").forward(request, response);
         }
     }

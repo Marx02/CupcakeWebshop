@@ -4,6 +4,8 @@
     Author     : caspe
 --%>
 
+<%@page import="DBConnector.CupcakeTopping"%>
+<%@page import="DBConnector.CupcakeBottom"%>
 <%@page import="java.util.List"%>
 <%@page import="DBConnector.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,17 +38,39 @@
                 <thead><tr><th>Bottom</th><th>Topping</th><th>Quantity</th><th>Select</th><th></th></tr></thead>
                 <tbody>
                     <tr>
+                        <% List<CupcakeBottom> cb = (List) request.getSession().getAttribute("bottoms"); %>
+
                         <td><select name="bottom" id="bottomSelect">
+
                                 <option value="0">Choose bottom</option>
 
-                                <option value="1">Chocolate: 5.0</option><option value="2">Vanilla: 5.0</option><option value="3">Nutmeg: 5.0</option><option value="4">Pistacio: 6.0</option><option value="5">Almond: 7.0</option>
+                                <% for (int i = 0; i < cb.size(); i++) {
+
+                                        String np = cb.get(i).getName() + "  " + cb.get(i).getPrice() + "$";
+
+
+                                %><option value="<% cb.get(i); %>"><% out.print(np);%></option>
+
+                                <% }%>
+
+
+
 
                             </select></td>
+                            
+                            <% List<CupcakeTopping> ct = (List) request.getSession().getAttribute("toppings"); %>
                         <td><select name="topping" id="toppingSelect">
                                 <option value="0">Choose topping</option>
 
+                                 <% for (int i = 0; i < ct.size(); i++) {
 
-                                <option value="1">Chocolate: 5.0</option><option value="2">Blueberry: 5.0</option><option value="3">Raspberry: 5.0</option><option value="4">Crispy: 6.0</option><option value="5">Strawberry: 6.0</option><option value="6">Rum/Raisin: 7.0</option><option value="7">Orange: 8.0</option><option value="8">Lemon: 8.0</option><option value="9">Blue cheese: 9.0</option>
+                                        String npt = ct.get(i).getName() + "  " + cb.get(i).getPrice() + "$";
+
+
+                                %><option value="<% ct.get(i); %>"><% out.print(npt);%></option>
+
+                                <% }%>
+   
                             </select></td>
                         <td><input type="text" name="qty" placeholder="quantity" id="qtyInput"></td>
                         <td><input type="submit" name="submit" value="Add to cart"></td><td><span id="errorContainer"></span></td>
