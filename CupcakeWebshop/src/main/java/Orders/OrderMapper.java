@@ -41,4 +41,27 @@ public class OrderMapper {
         return aUser;
     }
 
+    public Order getOrderByID(int orderID, int userID, int price, int qty, String pname, String username, String customername) {
+        Order oID = null;
+        try {
+            Connection c = new DBConnector().getConnection();
+            Statement st = c.createStatement();
+            String query
+                    = "SELECT * "
+                    + "FROM orders "
+                    + "WHERE orderID = '"+ oID +"';" ;
+            ResultSet res = st.executeQuery(query);
+            userID = res.getInt(orderID);
+            price = res.getInt("price");
+            pname = res.getString("variant");
+        } catch (Exception ex) {
+            return null;
+        }
+            
+        
+        
+        return oID;
+    }
+    
+    
 }
