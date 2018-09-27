@@ -122,7 +122,7 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement stmt = c.createStatement();
             String comm
-                    = "INSERT INTO `users` (username,pw,balance) "
+                    = "INSERT INTO `users` (username, pw, balance) "
                     + "values('" + name + "', '" + pass + "'," + 0 + ");";
             stmt.execute(comm);
         } catch (Exception ex) {
