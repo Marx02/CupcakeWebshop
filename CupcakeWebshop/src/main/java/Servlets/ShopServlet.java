@@ -44,13 +44,16 @@ public class ShopServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            request.getRequestDispatcher("mainPage.jsp");
+            request.getRequestDispatcher("mainPage.jsp").forward(request, response);
         }
     }
 
-    
-    
-    
+    private int updateBalance(HttpServletRequest req) throws Exception {
+        String balance = req.getParameter("balance");
+        int blc = Integer.parseInt(balance);
+        return blc;
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
