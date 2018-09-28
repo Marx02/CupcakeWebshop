@@ -28,6 +28,7 @@ import Orders.Order;
  */
 @WebServlet(name = "ShopServlet", urlPatterns = {"/ShopServlet"})
 public class ShopServlet extends HttpServlet {
+
     Order currentOrder;
     DataMapper dm = new DataMapper();
 
@@ -40,7 +41,6 @@ public class ShopServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -88,13 +88,14 @@ public class ShopServlet extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         doGet(request, response);
-        String topping = request.getParameter("topping");
-        String bottom = request.getParameter("bottom");
+        int topping = Integer.parseInt(request.getParameter("topping"));
+        int bottom = Integer.parseInt(request.getParameter("bottom"));
         Cupcake c = new Cupcake(dm.getTopping(topping), dm.getBottom(bottom));
         int qty = Integer.parseInt(request.getParameter("qty"));
         currentOrder.addCupcake(c, qty);
         request.getSession().setAttribute("order", currentOrder);
-        
+        request.getRequestDispatcher("mainPage.jsp").forward(request, response);
+
     }
 
     /**

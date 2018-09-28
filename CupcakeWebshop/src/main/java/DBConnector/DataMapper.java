@@ -17,18 +17,11 @@ import java.util.List;
  * @author Esben
  */
 public class DataMapper {
-//    public static void main(String[] args) {
-//        DataMapper m = new DataMapper();
-//        User c = new User("Casper",420,true);
-//        c = m.getUserInfo("Esben", "123");
-//        m.updateBalance(c);
-//        System.out.println(c.getuName());
-//        for (CupcakeBottom ct : m.getAllBottoms() ){
-//        System.out.println(ct.getPrice() + ct.getName());
-//            System.out.println(m.getAllBottoms().size());
-//        }
-//        
-//    }
+
+    public static void main(String[] args) {
+        DataMapper m = new DataMapper();
+        System.out.println(m.getBottom(1).getName() + m.getBottom(1).getPrice() );
+    }
 
     public User getUserInfo(String uName, String password) {
         User aUser = null;
@@ -54,7 +47,7 @@ public class DataMapper {
         return aUser;
     }
 
-    public CupcakeBottom getBottom(String name) {
+    public CupcakeBottom getBottom(int bid) {
         int price;
         String variant;
         try {
@@ -62,8 +55,8 @@ public class DataMapper {
             Statement st = c.createStatement();
             String query
                     = "SELECT *"
-                    + "FROM `bottoms`"
-                    + "WHERE `variant` =" + name + ";";
+                    + "FROM bottoms"
+                    + "WHERE `bID` =" + bid + ";";
             ResultSet res = st.executeQuery(query);
             variant = res.getString("variant");
             price = res.getInt("price");
@@ -75,7 +68,7 @@ public class DataMapper {
         return a;
     }
 
-    public CupcakeTopping getTopping(String name) {
+    public CupcakeTopping getTopping(int tid) {
         int price;
         String variant;
         try {
@@ -83,12 +76,12 @@ public class DataMapper {
             Statement st = c.createStatement();
             String query
                     = "SELECT *"
-                    + "FROM `toppings`"
-                    + "WHERE `variant` =" + name + ";";
+                    + "FROM toppings"
+                    + "WHERE `tID` =" + tid + ";";
             ResultSet res = st.executeQuery(query);
             variant = res.getString("variant");
             price = res.getInt("price");
-            
+
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
@@ -107,23 +100,23 @@ public class DataMapper {
             String query
                     = "SELECT *"
                     + "FROM `toppings`;";
-            
+
             ResultSet res = st.executeQuery(query);
-            while(res.next()){
-            price = res.getInt("price");
-            variant = res.getString("variant");
-            CupcakeTopping b = new CupcakeTopping(variant, price);
-            CTList.add(b);
+            while (res.next()) {
+                price = res.getInt("price");
+                variant = res.getString("variant");
+                CupcakeTopping b = new CupcakeTopping(variant, price);
+                CTList.add(b);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
-        
+
         return CTList;
     }
 
-        public List<CupcakeBottom> getAllBottoms() {
+    public List<CupcakeBottom> getAllBottoms() {
         int price;
         String variant;
         List<CupcakeBottom> CBList = new ArrayList();
@@ -133,24 +126,22 @@ public class DataMapper {
             String query
                     = "SELECT *"
                     + "FROM `bottoms`;";
-            
+
             ResultSet res = st.executeQuery(query);
-            while(res.next()){
-            price = res.getInt("price");
-            variant = res.getString("variant");
-            CupcakeBottom t = new CupcakeBottom(variant, price);
-            CBList.add(t);
+            while (res.next()) {
+                price = res.getInt("price");
+                variant = res.getString("variant");
+                CupcakeBottom t = new CupcakeBottom(variant, price);
+                CBList.add(t);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
-        
+
         return CBList;
     }
 
-    
-    
     public void updateBalance(User aUser) {
         try {
             Connection c = new DBConnector().getConnection();
