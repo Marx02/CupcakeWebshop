@@ -54,7 +54,7 @@ public class DataMapper {
         return aUser;
     }
 
-    public CupcakeBottom getBottom(int bid) {
+    public CupcakeBottom getBottom(String name) {
         int price;
         String variant;
         try {
@@ -63,7 +63,7 @@ public class DataMapper {
             String query
                     = "SELECT *"
                     + "FROM `bottoms`"
-                    + "WHERE bID =" + bid + ";";
+                    + "WHERE `variant` =" + name + ";";
             ResultSet res = st.executeQuery(query);
             variant = res.getString("variant");
             price = res.getInt("price");
@@ -75,7 +75,7 @@ public class DataMapper {
         return a;
     }
 
-    public CupcakeTopping getTopping(int tid) {
+    public CupcakeTopping getTopping(String name) {
         int price;
         String variant;
         try {
@@ -84,7 +84,7 @@ public class DataMapper {
             String query
                     = "SELECT *"
                     + "FROM `toppings`"
-                    + "WHERE tID =" + tid + ";";
+                    + "WHERE `variant` =" + name + ";";
             ResultSet res = st.executeQuery(query);
             variant = res.getString("variant");
             price = res.getInt("price");

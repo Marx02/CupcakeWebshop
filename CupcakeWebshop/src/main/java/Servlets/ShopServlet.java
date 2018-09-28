@@ -28,7 +28,7 @@ import Orders.Order;
  */
 @WebServlet(name = "ShopServlet", urlPatterns = {"/ShopServlet"})
 public class ShopServlet extends HttpServlet {
-
+    Order currentOrder;
     DataMapper dm = new DataMapper();
 
     /**
@@ -87,8 +87,14 @@ public class ShopServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
         doGet(request, response);
+        String topping = request.getParameter("topping");
+        String bottom = request.getParameter("bottom");
+        Cupcake c = new Cupcake(dm.getTopping(topping), dm.getBottom(bottom));
+        int qty = Integer.parseInt(request.getParameter("qty"));
+        currentOrder.addCupcake(c, qty);
+        request.getSession().setAttribute("order", currentOrder);
+        
     }
 
     /**

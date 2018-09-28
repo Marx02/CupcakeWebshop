@@ -4,6 +4,7 @@
     Author     : caspe
 --%>
 
+<%@page import="Orders.Order"%>
 <%@page import="DBConnector.CupcakeTopping"%>
 <%@page import="DBConnector.CupcakeBottom"%>
 <%@page import="java.util.List"%>
@@ -76,6 +77,15 @@
                             </select></td>
                         <td><input type="text" name="qty" placeholder="quantity" id="qtyInput"></td>
                         <td><input type="submit" name="submit" value="Add to cart"></td><td><span id="errorContainer"></span></td>
+                        
+                        <% Order currentOrder = (Order) request.getSession().getAttribute("order"); 
+                            try{
+                        out.print(currentOrder.getCupcakes().get(0));
+                            }
+                            catch(Exception n) {
+                            n.printStackTrace();
+                            }
+                        %>
                     </tr>
                 </tbody>
             </table>
