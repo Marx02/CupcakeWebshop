@@ -44,6 +44,8 @@
 
                                 <option value="0">Choose bottom</option>
 
+                         <option value="0">Choose bottom</option>
+
                                 <% for (int i = 0; i < cb.size(); i++) {
 
                                         String np = cb.get(i).getName() + "  " + cb.get(i).getPrice() + "$";
@@ -64,7 +66,7 @@
 
                                  <% for (int i = 0; i < ct.size(); i++) {
 
-                                        String npt = ct.get(i).getName() + "  " + cb.get(i).getPrice() + "$";
+                                        String npt = ct.get(i).getName() + "  " + ct.get(i).getPrice() + "$";
 
 
                                 %><option value="<% ct.get(i); %>"><% out.print(npt);%></option>

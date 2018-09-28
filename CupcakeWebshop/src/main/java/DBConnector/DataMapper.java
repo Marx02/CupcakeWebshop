@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +20,14 @@ public class DataMapper {
 //    public static void main(String[] args) {
 //        DataMapper m = new DataMapper();
 //        User c = new User("Casper",420,true);
+//        c = m.getUserInfo("Esben", "123");
 //        m.updateBalance(c);
+//        System.out.println(c.getuName());
+//        for (CupcakeBottom ct : m.getAllBottoms() ){
+//        System.out.println(ct.getPrice() + ct.getName());
+//            System.out.println(m.getAllBottoms().size());
+//        }
+//        
 //    }
 
     public User getUserInfo(String uName, String password) {
@@ -53,13 +61,14 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT `price`, `variant`"
+                    = "SELECT *"
                     + "FROM `bottoms`"
-                    + "WHERE bid =`" + bid + "`;";
+                    + "WHERE bID =" + bid + ";";
             ResultSet res = st.executeQuery(query);
-            price = res.getInt("price");
             variant = res.getString("variant");
+            price = res.getInt("price");
         } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
         CupcakeBottom a = new CupcakeBottom(variant, price);
@@ -73,23 +82,25 @@ public class DataMapper {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT `price`, `variant`"
+                    = "SELECT *"
                     + "FROM `toppings`"
-                    + "WHERE variant =`" + tid + "`;";
+                    + "WHERE tID =" + tid + ";";
             ResultSet res = st.executeQuery(query);
-            price = res.getInt("price");
             variant = res.getString("variant");
+            price = res.getInt("price");
+            
         } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
         CupcakeTopping b = new CupcakeTopping(variant, price);
         return b;
     }
 
-    public ArrayList<CupcakeTopping> getAllToppings() {
+    public List<CupcakeTopping> getAllToppings() {
         int price;
         String variant;
-        ArrayList<CupcakeTopping> CTList = new ArrayList();
+        List<CupcakeTopping> CTList = new ArrayList();
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
@@ -105,16 +116,17 @@ public class DataMapper {
             CTList.add(b);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
         
         return CTList;
     }
 
-        public ArrayList<CupcakeBottom> getAllBottoms() {
+        public List<CupcakeBottom> getAllBottoms() {
         int price;
         String variant;
-        ArrayList<CupcakeBottom> CBList = new ArrayList();
+        List<CupcakeBottom> CBList = new ArrayList();
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
@@ -130,6 +142,7 @@ public class DataMapper {
             CBList.add(t);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
             return null;
         }
         
