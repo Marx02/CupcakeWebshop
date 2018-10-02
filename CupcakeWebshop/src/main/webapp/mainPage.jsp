@@ -44,7 +44,6 @@
 
                             <option value="0">Choose bottom</option>
 
-                            <option value="0">Choose bottom</option>
 
                             <% for (int i = 0; i < cb.size(); i++) {
 
@@ -74,7 +73,7 @@
                             <% }%>
 
                         </select></td>
-                    <td><input type="text" name="qty" placeholder="quantity" id="qtyInput"></td>
+                    <td><input type="number" name="qty" placeholder="quantity" id="qtyInput"></td>
                     <td><input type="submit" name="submit" value="Add to cart"></td><td><span id="errorContainer"></span></td>
 
 
@@ -83,13 +82,13 @@
         </table>
     </form>
     <h1> <% Order currentOrder = (Order) request.getSession().getAttribute("order");
-        currentOrder.addCupcake(new Cupcake(new CupcakeTopping("Hygge", 2), new CupcakeBottom("Hejsa", 2)), 5);
-        out.print("test");
-        try {
+        try{
             out.print(currentOrder.getCupcakes().get(0).getName());
-        } catch (NullPointerException n) {
-            n.printStackTrace();
         }
+        catch(NullPointerException e){
+            e.printStackTrace();
+        }
+        
         %>
     </h1>
 </body>

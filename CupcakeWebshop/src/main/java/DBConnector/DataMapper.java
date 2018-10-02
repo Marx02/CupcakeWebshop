@@ -20,7 +20,9 @@ public class DataMapper {
 
     public static void main(String[] args) {
         DataMapper m = new DataMapper();
-        System.out.println(m.getBottom(1).getName() + m.getBottom(1).getPrice() );
+        System.out.println(m.getBottom("Chocolate").getPrice());
+        System.out.println(m.getTopping("Chocolate").getPrice());
+        System.out.println(m.getAllBottoms().get(1).getName());
     }
 
     public User getUserInfo(String uName, String password) {
@@ -47,41 +49,46 @@ public class DataMapper {
         return aUser;
     }
 
-    public CupcakeBottom getBottom(int bid) {
-        int price;
-        String variant;
+    public CupcakeBottom getBottom(String name) {
+        CupcakeBottom a = null;
+        int price = 0;
+        String variant = "";
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT *"
-                    + "FROM bottoms"
-                    + "WHERE `bID` =" + bid + ";";
+                    = "SELECT * "
+                    + "FROM bottoms "
+                    + "WHERE variant = '" + name + "';";
             ResultSet res = st.executeQuery(query);
-            variant = res.getString("variant");
-            price = res.getInt("price");
+            while (res.next()) {
+                variant = res.getString("variant");
+                price = res.getInt("price");
+                a = new CupcakeBottom(variant, price);
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;
         }
-        CupcakeBottom a = new CupcakeBottom(variant, price);
+
         return a;
     }
 
-    public CupcakeTopping getTopping(int tid) {
-        int price;
-        String variant;
+    public CupcakeTopping getTopping(String name) {
+        int price = 0;
+        String variant = "";
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
             String query
-                    = "SELECT *"
-                    + "FROM toppings"
-                    + "WHERE `tID` =" + tid + ";";
+                    = "SELECT * "
+                    + "FROM toppings "
+                    + "WHERE `variant` = '" + name + "';";
             ResultSet res = st.executeQuery(query);
-            variant = res.getString("variant");
-            price = res.getInt("price");
-
+            while (res.next()) {
+                variant = res.getString("variant");
+                price = res.getInt("price");
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
             return null;

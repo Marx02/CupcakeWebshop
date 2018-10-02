@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DBConnector.*;
 import Orders.Order;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -45,12 +46,13 @@ public class ShopServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
             List<CupcakeTopping> ct = dm.getAllToppings();
             request.getSession().setAttribute("toppings", ct);
             List<CupcakeBottom> cb = dm.getAllBottoms();
             request.getSession().setAttribute("bottoms", cb);
             request.getRequestDispatcher("mainPage.jsp").forward(request, response);
+            response.sendRedirect("http://localhost:8084/CupcakeWebshop/mainPage.jsp");
+
         }
     }
 
@@ -87,15 +89,9 @@ public class ShopServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        doGet(request, response);
-        int topping = Integer.parseInt(request.getParameter("topping"));
-        int bottom = Integer.parseInt(request.getParameter("bottom"));
-        Cupcake c = new Cupcake(dm.getTopping(topping), dm.getBottom(bottom));
-        int qty = Integer.parseInt(request.getParameter("qty"));
-        currentOrder.addCupcake(c, qty);
-        request.getSession().setAttribute("order", currentOrder);
-        request.getRequestDispatcher("mainPage.jsp").forward(request, response);
+        
 
+        //   doGet(request, response);
     }
 
     /**
