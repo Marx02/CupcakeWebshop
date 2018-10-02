@@ -50,7 +50,7 @@
                                     String np = cb.get(i).getName() + "  " + cb.get(i).getPrice() + "$";
 
 
-                            %><option value="<% cb.get(i); %>"><% out.print(np);%></option>
+                            %><option value="<% cb.get(i).getName(); %>"><% out.print(np);%></option>
 
                             <% }%>
 
@@ -68,7 +68,7 @@
                                     String npt = ct.get(i).getName() + "  " + ct.get(i).getPrice() + "$";
 
 
-                            %><option value="<% ct.get(i); %>"><% out.print(npt);%></option>
+                            %><option value="<% ct.get(i).getName(); %>"><% out.print(npt);%></option>
 
                             <% }%>
 
