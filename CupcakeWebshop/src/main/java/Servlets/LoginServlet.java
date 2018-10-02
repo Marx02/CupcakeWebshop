@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("user", us);
                 request.getRequestDispatcher("ShopServlet").forward(request, response);
             }
-            if (us.getuName().equals("")) {
+            if (!us.isLoggedIn()) {
                 response.sendRedirect(request.getContextPath());
             }
         }

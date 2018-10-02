@@ -56,6 +56,7 @@ public class ShopServlet extends HttpServlet {
         }
     }
 
+    //Not working yet - is going to add cash to balance
     private int updateBalance(HttpServletRequest req) throws Exception {
         String balance = req.getParameter("balance");
         int blc = Integer.parseInt(balance);
