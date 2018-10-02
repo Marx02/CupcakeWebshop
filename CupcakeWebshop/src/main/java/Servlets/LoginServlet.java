@@ -49,7 +49,6 @@ public class LoginServlet extends HttpServlet {
             out.println(us.getuName());
             out.println(us.getBalance());
             if (us.isLoggedIn()) {
-                
                 request.getSession().setAttribute("user", us);
                 request.getRequestDispatcher("ShopServlet").forward(request, response);
             }
@@ -72,7 +71,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+      //  processRequest(request, response);
     }
 
     /**
