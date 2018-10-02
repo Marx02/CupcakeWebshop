@@ -51,7 +51,7 @@ public class ShopServlet extends HttpServlet {
             List<CupcakeBottom> cb = dm.getAllBottoms();
             request.getSession().setAttribute("bottoms", cb);
             request.getRequestDispatcher("mainPage.jsp").forward(request, response);
-            response.sendRedirect("http://localhost:8084/CupcakeWebshop/mainPage.jsp");
+          //  response.sendRedirect("http://localhost:8084/CupcakeWebshop/mainPage.jsp");
 
         }
     }

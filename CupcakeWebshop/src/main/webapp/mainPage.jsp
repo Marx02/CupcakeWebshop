@@ -33,7 +33,7 @@
         <input type="text" name="amount" placeholder="Enter amount"/>
         <input type="submit" value="Add to wallet" formaction="/updateBalance"> <!update balance skal laves>
     </form>
-    <form action="http://localhost:8084/CupcakeWebshop/ShopServlet" method="POST">
+    <form action="http://localhost:8084/CupcakeWebshop/ProductControl" method="POST">
         <table class="table table-striped">
             <thead><tr><th>Bottom</th><th>Topping</th><th>Quantity</th><th>Select</th><th></th></tr></thead>
             <tbody>
