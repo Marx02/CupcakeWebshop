@@ -21,7 +21,7 @@ public class Cupcake {
     }
 
     public String getName() {
-        return bottom.getName() + " with " + topping.getName();
+        return bottom.getName() + " " + topping.getName();
     }
 
     public int getPrice() {

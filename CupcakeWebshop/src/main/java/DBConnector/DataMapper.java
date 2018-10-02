@@ -97,10 +97,10 @@ public class DataMapper {
         return b;
     }
 
-    public List<CupcakeTopping> getAllToppings() {
+    public ArrayList<CupcakeTopping> getAllToppings() {
         int price;
         String variant;
-        List<CupcakeTopping> CTList = new ArrayList();
+        ArrayList<CupcakeTopping> CTList = new ArrayList();
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();
@@ -123,10 +123,10 @@ public class DataMapper {
         return CTList;
     }
 
-    public List<CupcakeBottom> getAllBottoms() {
+    public ArrayList<CupcakeBottom> getAllBottoms() {
         int price;
         String variant;
-        List<CupcakeBottom> CBList = new ArrayList();
+        ArrayList<CupcakeBottom> CBList = new ArrayList();
         try {
             Connection c = new DBConnector().getConnection();
             Statement st = c.createStatement();

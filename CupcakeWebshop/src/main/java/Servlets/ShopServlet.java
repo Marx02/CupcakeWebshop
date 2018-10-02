@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import DBConnector.*;
 import Orders.Order;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -44,14 +45,21 @@ public class ShopServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            List<CupcakeTopping> ct = dm.getAllToppings();
-            request.getSession().setAttribute("toppings", ct);
-            List<CupcakeBottom> cb = dm.getAllBottoms();
-            request.getSession().setAttribute("bottoms", cb);
-            request.getRequestDispatcher("mainPage.jsp").forward(request, response);
-          //  response.sendRedirect("http://localhost:8084/CupcakeWebshop/mainPage.jsp");
+            ArrayList<CupcakeTopping> ct = dm.getAllToppings();
+            session.setAttribute("toppings", ct);
+            ArrayList<CupcakeBottom> cb = dm.getAllBottoms();
+            session.setAttribute("bottoms", cb);
+            if(currentOrder == null){
+                currentOrder = new Order();
+                session.setAttribute("order", currentOrder);
+            }
+            
+            
+           // request.getRequestDispatcher("mainPage.jsp").forward(request, response);
+             response.sendRedirect("http://localhost:8084/CupcakeWebshop/mainPage.jsp");
 
         }
     }
@@ -90,7 +98,6 @@ public class ShopServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
 
         //   doGet(request, response);
     }

@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import DBConnector.*;
-import Orders.Order;
+import Orders.*;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,9 +22,10 @@ import Orders.Order;
  */
 @WebServlet(name = "ProductControl", urlPatterns = {"/ProductControl"})
 public class ProductControl extends HttpServlet {
-    
+
     DataMapper dm = new DataMapper();
     Order currentOrder;
+    OrderMapper om = new OrderMapper();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,31 +38,34 @@ public class ProductControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String topping = request.getParameter("topping");
-            String bottom = request.getParameter("bottom");
-            Cupcake c = new Cupcake(dm.getTopping(topping), dm.getBottom(bottom));
+            currentOrder = (Order) session.getAttribute("order");
+            String cctop = request.getParameter("topping");
+            String ccbot = request.getParameter("bottom");
+            Cupcake cc = new Cupcake(dm.getTopping(cctop), dm.getBottom(ccbot));
             int qty = Integer.parseInt(request.getParameter("qty"));
-            currentOrder.addCupcake(c, qty);
-            request.getSession().setAttribute("order", currentOrder);
-            //request.getRequestDispatcher("ShopServlet").forward(request, response);
-            response.sendRedirect("/ShopServlet");
-        } 
+            currentOrder.addCupcake(cc, qty);
+            session.setAttribute("order", currentOrder);
+            session.setAttribute("totalPrice", currentOrder.getTotalPrice());
+            
+            request.getRequestDispatcher("ShopServlet").forward(request, response);
+            //response.sendRedirect("/ShopServlet");
+        }
     }
 
-
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -74,7 +79,7 @@ public class ProductControl extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -85,7 +90,7 @@ public class ProductControl extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

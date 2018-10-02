@@ -4,6 +4,7 @@
     Author     : caspe
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="DBConnector.Cupcake"%>
 <%@page import="Orders.Order"%>
 <%@page import="DBConnector.CupcakeTopping"%>
@@ -29,20 +30,19 @@
 
 </head>
 <body>
-    <form action="http://localhost:8084/CupcakeWebshop/ShopServlet" method="POST">
-        <input type="text" name="amount" placeholder="Enter amount"/>
-        <input type="submit" value="Add to wallet" formaction="/updateBalance"> <!update balance skal laves>
-    </form>
-    <form action="http://localhost:8084/CupcakeWebshop/ProductControl" method="POST">
+<form method="get" action="http://localhost:8084/CupcakeWebshop/CartServlet">
+    <button type="submit">Shopping Cart</button>
+</form>
+    <form action="http://localhost:8084/CupcakeWebshop/ProductControl" method="GET">
         <table class="table table-striped">
             <thead><tr><th>Bottom</th><th>Topping</th><th>Quantity</th><th>Select</th><th></th></tr></thead>
             <tbody>
                 <tr>
-                    <% List<CupcakeBottom> cb = (List) request.getSession().getAttribute("bottoms"); %>
+                    <% ArrayList<CupcakeBottom> cb = (ArrayList) request.getSession().getAttribute("bottoms"); %>
 
                     <td><select name="bottom" id="bottomSelect">
 
-                            <option value="0">Choose bottom</option>
+                            <option>Choose bottom</option>
 
 
                             <% for (int i = 0; i < cb.size(); i++) {
@@ -50,7 +50,7 @@
                                     String np = cb.get(i).getName() + "  " + cb.get(i).getPrice() + "$";
 
 
-                            %><option value="<% cb.get(i).getName(); %>"><% out.print(np);%></option>
+                            %><option><% out.print(cb.get(i).getName());%></option>
 
                             <% }%>
 
@@ -59,37 +59,28 @@
 
                         </select></td>
 
-                    <% List<CupcakeTopping> ct = (List) request.getSession().getAttribute("toppings"); %>
+                    <% ArrayList<CupcakeTopping> ct = (ArrayList) request.getSession().getAttribute("toppings"); %>
                     <td><select name="topping" id="toppingSelect">
-                            <option value="0">Choose topping</option>
+                            <option>Choose topping</option>
 
                             <% for (int i = 0; i < ct.size(); i++) {
 
                                     String npt = ct.get(i).getName() + "  " + ct.get(i).getPrice() + "$";
 
 
-                            %><option value="<% ct.get(i).getName(); %>"><% out.print(npt);%></option>
+                            %><option><% out.print(ct.get(i).getName());%></option>
 
                             <% }%>
 
                         </select></td>
                     <td><input type="number" name="qty" placeholder="quantity" id="qtyInput"></td>
-                    <td><input type="submit" name="submit" value="Add to cart"></td><td><span id="errorContainer"></span></td>
+                    <td><input type="submit" value="Add to cart"></td><td><span id="errorContainer"></span></td>
 
 
                 </tr>
             </tbody>
         </table>
     </form>
-    <h1> <% Order currentOrder = (Order) request.getSession().getAttribute("order");
-        try{
-            out.print(currentOrder.getCupcakes().get(0).getName());
-        }
-        catch(NullPointerException e){
-            e.printStackTrace();
-        }
-        
-        %>
-    </h1>
+
 </body>
 </html>

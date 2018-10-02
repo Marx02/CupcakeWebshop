@@ -6,6 +6,7 @@
 package Orders;
 
 import DBConnector.Cupcake;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,13 +15,9 @@ import java.util.List;
  */
 public class Order {
 
-    private int oID; //Order id
-    private int price; //Price per cupcake
-    private int qty; //Quantity
-    private double tprice; //Total price
-    private String pname; //Productname
-    private String uname; //Username
-    private List<Cupcake> shoppingCart;
+    ArrayList<Cupcake> shoppingCart = new ArrayList();
+    int orderID;
+    int totalPrice;
 
     public void addCupcake(Cupcake cc, int qty) {
         for (int i = 0; i < qty; i++) {
@@ -28,15 +25,15 @@ public class Order {
         }
     }
 
-    public int getTotalPrice() {
-        int total = 0;
+    public int setTotalPrice() {
+        totalPrice = 0;
         for (int i = 0; i < shoppingCart.size(); i++) {
-            total += shoppingCart.get(i).getPrice();
+            totalPrice += shoppingCart.get(i).getPrice();
         }
-        return total;
+        return totalPrice;
     }
 
-    public List<Cupcake> getCupcakes() {
+    public ArrayList<Cupcake> getCupcakes() {
         return shoppingCart;
     }
 
@@ -46,36 +43,20 @@ public class Order {
         }
     }
 
-    public Order(int oID, int price, int qty, double tprice, String pname, String uname) {
-        this.oID = oID;
-        this.price = price;
-        this.qty = qty;
-        this.tprice = tprice;
-        this.pname = pname;
-        this.uname = uname;
+    public int getOrderID() {
+        return orderID;
     }
 
-    public int getoID() {
-        return oID;
+    public void setOrderID(int orderID) {
+        this.orderID = orderID;
     }
 
-    public int getPrice() {
-        return price;
+    public int getTotalPrice() {
+        return totalPrice;
     }
 
-    public int getQty() {
-        return qty;
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public double getTprice() {
-        return tprice;
-    }
-
-    public String getPname() {
-        return pname;
-    }
-
-    public String getUname() {
-        return uname;
-    }
 }

@@ -5,28 +5,24 @@
  */
 package Servlets;
 
+import DBConnector.Cupcake;
+import Orders.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import DBConnector.DataMapper;
-import DBConnector.User;
-import java.io.File;
-import java.net.URL;
-import java.nio.file.Files;
-import javax.servlet.RequestDispatcher;
-import static javax.servlet.SessionTrackingMode.URL;
 import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author caspe
+ * @author uber
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
+public class CartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,24 +39,15 @@ public class LoginServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
-            String user = request.getParameter("username");
-            String pass = request.getParameter("password");
-            DataMapper dm = new DataMapper();
-            User us = dm.getUserInfo(user, pass);
-            dm.getBalance(us);
-            out.println(us.getuName());
-            out.println(us.getBalance());
-            if (us.isLoggedIn()) {
-                session.setAttribute("user", us);
-                request.getRequestDispatcher("ShopServlet").forward(request, response);
-            }
-            if (!us.isLoggedIn()) {
-                response.sendRedirect(request.getContextPath());
-            }
+            Order currentOrder = (Order) session.getAttribute("order");
+            ArrayList<Cupcake> cakeList = currentOrder.getCupcakes();
+            session.setAttribute("cakeList", cakeList);
+            response.sendRedirect("http://localhost:8084/CupcakeWebshop/shoppingCart.jsp");
+            
+            
         }
     }
 
-//ÆNDRING
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -73,7 +60,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //  processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
