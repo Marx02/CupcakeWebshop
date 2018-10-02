@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class ProductControl extends HttpServlet {
 
     DataMapper dm = new DataMapper();
-    Order currentOrder;
+    User currentUser;
     OrderMapper om = new OrderMapper();
 
     /**
@@ -41,14 +41,14 @@ public class ProductControl extends HttpServlet {
         HttpSession session = request.getSession();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            currentOrder = (Order) session.getAttribute("order");
+            currentUser = (User) session.getAttribute("user");
             String cctop = request.getParameter("topping");
             String ccbot = request.getParameter("bottom");
             Cupcake cc = new Cupcake(dm.getTopping(cctop), dm.getBottom(ccbot));
             int qty = Integer.parseInt(request.getParameter("qty"));
-            currentOrder.addCupcake(cc, qty);
-            session.setAttribute("order", currentOrder);
-            session.setAttribute("totalPrice", currentOrder.getTotalPrice());
+            currentUser.getUserOrder().addCupcake(cc, qty);
+            session.setAttribute("user", currentUser);
+            session.setAttribute("totalPrice", currentUser.getUserOrder().getTotalPrice());
             
             request.getRequestDispatcher("ShopServlet").forward(request, response);
             //response.sendRedirect("/ShopServlet");

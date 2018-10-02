@@ -26,7 +26,7 @@
                 for (Cupcake c : cakeList) {
         %> <tr>
             <th><% out.println(c.getName());%></th><%
-            %><th><% out.println(c.getPrice()); %></th><%
+            %><th><% out.println(c.getPrice() + " KR"); %></th><%
                 }
 
             } catch (NullPointerException e) {

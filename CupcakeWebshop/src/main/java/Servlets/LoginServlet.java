@@ -46,15 +46,15 @@ public class LoginServlet extends HttpServlet {
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             DataMapper dm = new DataMapper();
-            User us = dm.getUserInfo(user, pass);
-            dm.getBalance(us);
-            out.println(us.getuName());
-            out.println(us.getBalance());
-            if (us.isLoggedIn()) {
-                session.setAttribute("user", us);
+            User currentUser = dm.getUserInfo(user, pass);
+            dm.getBalance(currentUser);
+            out.println(currentUser.getuName());
+            out.println(currentUser.getBalance());
+            if (currentUser.isLoggedIn()) {
+                session.setAttribute("user", currentUser);
                 request.getRequestDispatcher("ShopServlet").forward(request, response);
             }
-            if (!us.isLoggedIn()) {
+            if (!currentUser.isLoggedIn()) {
                 response.sendRedirect(request.getContextPath());
             }
         }

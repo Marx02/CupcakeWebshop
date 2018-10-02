@@ -5,6 +5,8 @@
  */
 package DBConnector;
 
+import Orders.Order;
+
 /**
  *
  * @author Esben
@@ -13,6 +15,7 @@ public class User {
     private String uName;
     private int balance;
     private boolean loggedIn;
+    private Order userOrder;
 
     public User(String uName, int balance, boolean loggedIn) {
         this.uName = uName;
@@ -38,6 +41,14 @@ public class User {
 
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
+    }
+
+    public Order getUserOrder() {
+        return userOrder;
+    }
+
+    public void setUserOrder(Order userOrder) {
+        this.userOrder = userOrder;
     }
     
     
