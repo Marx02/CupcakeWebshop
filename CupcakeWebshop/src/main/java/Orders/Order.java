@@ -7,6 +7,7 @@ package Orders;
 
 import DBConnector.Cupcake;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -15,25 +16,23 @@ import java.util.List;
  */
 public class Order {
 
-    ArrayList<Cupcake> shoppingCart = new ArrayList();
+    HashMap<Integer, Cupcake> shoppingCart = new HashMap();
     int orderID;
     int totalPrice;
 
     public void addCupcake(Cupcake cc, int qty) {
-        for (int i = 0; i < qty; i++) {
-            this.shoppingCart.add(cc);
-        }
+        shoppingCart.put(qty, cc);
     }
 
     public int setTotalPrice() {
         totalPrice = 0;
         for (int i = 0; i < shoppingCart.size(); i++) {
-            totalPrice += shoppingCart.get(i).getPrice();
+            totalPrice += shoppingCart.get(i).getPrice() ;
         }
         return totalPrice;
     }
 
-    public ArrayList<Cupcake> getCupcakes() {
+    public HashMap<Integer, Cupcake> getCupcakes() {
         return shoppingCart;
     }
 
@@ -55,8 +54,6 @@ public class Order {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+
 
 }
