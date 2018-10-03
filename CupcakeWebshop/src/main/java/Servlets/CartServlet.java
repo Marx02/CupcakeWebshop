@@ -11,6 +11,7 @@ import Orders.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +42,7 @@ public class CartServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             User currentUser = (User) session.getAttribute("user");
-            ArrayList<Cupcake> cakeList = currentUser.getUserOrder().getCupcakes();
+            HashMap<Integer, Cupcake> cakeList = currentUser.getUserOrder().getCupcakes();
             session.setAttribute("cakeList", cakeList);
             response.sendRedirect("http://localhost:8084/CupcakeWebshop/shoppingCart.jsp");
             

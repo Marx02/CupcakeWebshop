@@ -4,6 +4,10 @@
     Author     : uber
 --%>
 
+<%@page import="DBConnector.User"%>
+<%@page import="java.util.Set"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DBConnector.Cupcake"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,11 +26,12 @@
 
         <%
             try {
-                ArrayList<Cupcake> cakeList = (ArrayList<Cupcake>) request.getSession().getAttribute("cakeList");
-                for (Cupcake c : cakeList) {
+                HashMap<Integer, Cupcake> cakeList = (HashMap<Integer, Cupcake>) request.getSession().getAttribute("cakeList");
+                Set<Map.Entry<Integer, Cupcake>> entries = cakeList.entrySet();
+                for (Map.Entry<Integer, Cupcake> cl : entries) {
         %> <tr>
-            <th><% out.println(c.getName());%></th><%
-            %><th><% out.println(c.getPrice() + " KR"); %></th><%
+            <th><% out.println(cl.getValue().getName() + " x  " + cl.getKey()); %></th><%
+            %><th><% out.println(cl.getKey() * cl.getValue().getPrice() + " KR"); %></th><%
                 }
 
             } catch (NullPointerException e) {
@@ -36,12 +41,10 @@
 
             %>
         <th>
-            <% int totalPrice = 0;
-                ArrayList<Cupcake> cakeList = (ArrayList<Cupcake>) request.getSession().getAttribute("cakeList");
-                for (Cupcake c : cakeList) {
-                    totalPrice += c.getPrice();
-                }
-                out.print(totalPrice + " KR");
+            <% 
+                User currentUser = (User) request.getSession().getAttribute("user");
+                
+                out.print(currentUser.getUserOrder().getTotalPrice() + " KR");
             %>
         </th>
 

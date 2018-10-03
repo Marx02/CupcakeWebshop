@@ -6,9 +6,12 @@
 package Orders;
 
 import DBConnector.Cupcake;
+import DBConnector.DataMapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -26,8 +29,9 @@ public class Order {
 
     public int setTotalPrice() {
         totalPrice = 0;
-        for (int i = 0; i < shoppingCart.size(); i++) {
-            totalPrice += shoppingCart.get(i).getPrice() ;
+        Set<Map.Entry<Integer, Cupcake>> entries = shoppingCart.entrySet();
+        for(Map.Entry<Integer, Cupcake> sc : entries){
+            totalPrice += sc.getValue().getPrice() * sc.getKey();
         }
         return totalPrice;
     }
@@ -53,7 +57,5 @@ public class Order {
     public int getTotalPrice() {
         return totalPrice;
     }
-
-
 
 }

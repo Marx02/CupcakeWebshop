@@ -47,9 +47,8 @@ public class ProductControl extends HttpServlet {
             Cupcake cc = new Cupcake(dm.getTopping(cctop), dm.getBottom(ccbot));
             int qty = Integer.parseInt(request.getParameter("qty"));
             currentUser.getUserOrder().addCupcake(cc, qty);
+            currentUser.getUserOrder().setTotalPrice();
             session.setAttribute("user", currentUser);
-            session.setAttribute("totalPrice", currentUser.getUserOrder().getTotalPrice());
-            
             request.getRequestDispatcher("ShopServlet").forward(request, response);
             //response.sendRedirect("/ShopServlet");
         }
