@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : 27-09-2018, 09:26:56
-    Author     : Dan
+    Document   : newUser
+    Created on : 27-09-2018, 11:25:55
+    Author     : Esben
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,6 +13,7 @@
         <style>
             h1 {text-align: center}
             h2 {text-align: center}
+            p {text-align: center}
         </style>
     </head>
     <body>
@@ -24,9 +25,10 @@
                 <input type ="text" name ="username"><br/>
                 Password:<br/>
                 <input type ="password" name ="password"><br/>
-                <input type="submit" value="Login">
+                Confirm Password:<br/>
+                <input type="password" name ="cPassword"
+                <input type="submit" value="Register">
             </p>
         </form>
     </body>
 </html>
-<%-- Her skal der så skrives en knap der dirigerer videre til newUser.jsp, hvis man vil oprette en ny bruger  --%>
