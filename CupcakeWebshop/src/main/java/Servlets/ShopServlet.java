@@ -30,7 +30,7 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "ShopServlet", urlPatterns = {"/ShopServlet"})
 public class ShopServlet extends HttpServlet {
-    
+
     User currentUser;
     Order currentOrder;
     DataMapper dm = new DataMapper();
@@ -54,14 +54,13 @@ public class ShopServlet extends HttpServlet {
             ArrayList<CupcakeBottom> cb = dm.getAllBottoms();
             session.setAttribute("bottoms", cb);
             currentUser = (User) session.getAttribute("user");
-            if(currentUser.getUserOrder() == null){
+            if (currentUser.getUserOrder() == null) {
                 currentUser.setUserOrder(new Order());
                 session.setAttribute("user", currentUser);
             }
-            
-            
-           // request.getRequestDispatcher("mainPage.jsp").forward(request, response);
-             response.sendRedirect("http://localhost:8084/CupcakeWebshop/shop.jsp");
+
+            // request.getRequestDispatcher("mainPage.jsp").forward(request, response);
+            response.sendRedirect("http://localhost:8084/CupcakeWebshop/shop.jsp");
 
         }
     }
