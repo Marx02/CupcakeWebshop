@@ -61,7 +61,7 @@ public class ShopServlet extends HttpServlet {
             
             
            // request.getRequestDispatcher("mainPage.jsp").forward(request, response);
-             response.sendRedirect("http://localhost:8084/CupcakeWebshop/mainPage.jsp");
+             response.sendRedirect("http://localhost:8084/CupcakeWebshop/shop.jsp");
 
         }
     }
