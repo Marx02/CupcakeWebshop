@@ -42,9 +42,9 @@ public class CartServlet extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             User currentUser = (User) session.getAttribute("user");
-            HashMap<Integer, Cupcake> cakeList = currentUser.getUserOrder().getCupcakes();
+            HashMap<Cupcake, Integer> cakeList = currentUser.getUserOrder().getCupcakes();
             session.setAttribute("cakeList", cakeList);
-            response.sendRedirect("http://localhost:8084/CupcakeWebshop/shoppingCart.jsp");
+            response.sendRedirect("/shop.jsp");
             
             
         }

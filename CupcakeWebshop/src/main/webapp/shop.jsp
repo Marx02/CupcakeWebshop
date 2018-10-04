@@ -4,6 +4,9 @@
     Author     : caspe
 --%>
 
+<%@page import="java.util.Set"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DBConnector.Cupcake"%>
 <%@page import="Orders.Order"%>
@@ -81,6 +84,38 @@
             </tbody>
         </table>
     </form>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>
+    <table style="width:100%">
 
+        <%
+            try {
+                HashMap<Cupcake, Integer> cakeList = (HashMap<Cupcake, Integer>) request.getSession().getAttribute("cakeList");
+                Set<Map.Entry<Cupcake, Integer>> entries = cakeList.entrySet();
+                for (Map.Entry<Cupcake, Integer> cl : entries) {
+        %> <tr>
+            <th><% out.println(cl.getValue() + " x  " + cl.getKey().getName()); %></th><%
+            %><th><% out.println(cl.getKey().getPrice() * cl.getValue() + " KR"); %></th><%
+                }
+
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+                %></tr><%
+                    }
+
+            %>
+        <th>
+            <% 
+                User currentUser = (User) request.getSession().getAttribute("user");
+                
+                out.print(currentUser.getUserOrder().getTotalPrice() + " KR");
+            %>
+        </th>
+
+
+    </table>
 </body>
 </html>

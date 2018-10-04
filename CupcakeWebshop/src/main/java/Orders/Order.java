@@ -19,24 +19,39 @@ import java.util.Set;
  */
 public class Order {
 
-    HashMap<Integer, Cupcake> shoppingCart = new HashMap();
+    HashMap<Cupcake, Integer> shoppingCart = new HashMap();
     int orderID;
     int totalPrice;
 
+    /**
+     * Adds a cupcake to the HashMap shoppingCart
+     * The key is the Cupcake object and the value is the quantity
+     * 
+     * 
+     * @param cc the cupcake object being stored
+     * @param qty quantity int
+     */
     public void addCupcake(Cupcake cc, int qty) {
-        shoppingCart.put(qty, cc);
+        shoppingCart.put(cc, qty);
     }
-
+    
+    /**
+     * Calculates the price of all Cupcakes in the shoppingCart.
+     * Also sets the int totalPrice on the Order object for use without calculation.
+     * 
+     * 
+     * @return int total price of the shoppingCart
+     */
     public int setTotalPrice() {
         totalPrice = 0;
-        Set<Map.Entry<Integer, Cupcake>> entries = shoppingCart.entrySet();
-        for(Map.Entry<Integer, Cupcake> sc : entries){
-            totalPrice += sc.getValue().getPrice() * sc.getKey();
+        Set<Map.Entry<Cupcake, Integer>> entries = shoppingCart.entrySet();
+        for(Map.Entry<Cupcake, Integer> sc : entries){
+            totalPrice += sc.getValue() * sc.getKey().getPrice();
         }
         return totalPrice;
     }
 
-    public HashMap<Integer, Cupcake> getCupcakes() {
+    public HashMap<Cupcake, Integer> getCupcakes() {
         return shoppingCart;
     }
 
