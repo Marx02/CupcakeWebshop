@@ -18,7 +18,7 @@
     <body>
         <h1>Cookie Clickers Bake Webshop</h1>
         <h2>Plz login to order sweet, SWEET cupcakes.</h2>
-        <form method="POST" action="http://localhost:8084/CupcakeWebshop/Login">
+        <form method="POST" action="/CupcakeWebshop-1.0-SNAPSHOT/Login">
             <p>
                 Username:<br/>
                 <input type ="text" name ="username"><br/>

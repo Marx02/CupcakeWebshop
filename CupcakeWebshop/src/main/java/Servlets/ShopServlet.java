@@ -63,7 +63,7 @@ public class ShopServlet extends HttpServlet {
             }
 
             // request.getRequestDispatcher("mainPage.jsp").forward(request, response);
-            response.sendRedirect("/shop.jsp");
+            response.sendRedirect("/CupcakeWebshop-1.0-SNAPSHOT/shop.jsp");
 
         }
     }

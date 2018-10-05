@@ -45,8 +45,9 @@ public class CartServlet extends HttpServlet {
             User currentUser = (User) session.getAttribute("user");
             HashMap<Cupcake, Integer> cakeList = currentUser.getUserOrder().getCupcakes();
             session.setAttribute("cakeList", cakeList);
-            response.sendRedirect("/shop.jsp");
-
+            response.sendRedirect("/CupcakeWebshop-1.0-SNAPSHOT/shop.jsp");
+            
+            
         }
     }
 
