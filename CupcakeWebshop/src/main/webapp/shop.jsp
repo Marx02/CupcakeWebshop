@@ -26,17 +26,16 @@
         <title>Cookie Clicker Bakeshop</title>
     <h1> <%
         User us = (User) request.getSession().getAttribute("user");
-        out.print("Welcome  " + us.getuName() + "        Balance:   " + us.getBalance());
+        out.print("Welcome  " + us.getuName());
         %> 
     </h1>
+    <h2> <% out.print("Balance:   " + us.getBalance()); %>
+    </h2>
 
 
 </head>
 <body>
-<form method="get" action="http://localhost:8084/CupcakeWebshop/CartServlet">
-    <button type="submit">Shopping Cart</button>
-</form>
-    <form action="http://localhost:8084/CupcakeWebshop/ProductControl" method="GET">
+    <form action="/CupcakeWebshop-1.0-SNAPSHOT/ProductControl" method="GET">
         <table class="table table-striped">
             <thead><tr><th>Bottom</th><th>Topping</th><th>Quantity</th><th>Select</th><th></th></tr></thead>
             <tbody>
@@ -84,11 +83,11 @@
             </tbody>
         </table>
     </form>
-        <style>
-            table, th, td {
-                border: 1px solid black;
-            }
-        </style>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
     <table style="width:100%">
 
         <%
@@ -108,9 +107,8 @@
 
             %>
         <th>
-            <% 
-                User currentUser = (User) request.getSession().getAttribute("user");
-                
+            <%                User currentUser = (User) request.getSession().getAttribute("user");
+
                 out.print(currentUser.getUserOrder().getTotalPrice() + " KR");
             %>
         </th>
