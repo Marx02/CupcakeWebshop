@@ -32,8 +32,8 @@ public class DataMapper {
      * also incorrect, it returns a user named "Error"
      *
      *
-     * @param uName
-     * @param password
+     * @param uName is the username
+     * @param password is the password for login, connected to the username
      * @return User
      */
     public User getUserInfo(String uName, String password) {
@@ -65,7 +65,7 @@ public class DataMapper {
      * name, from the database. Then it will return the chosen cupcakebottom
      * with its two values.
      *
-     * @param name
+     * @param name which is the name of the bottom type
      * @return CuocakeBottom
      */
     public CupcakeBottom getBottom(String name) {
@@ -98,8 +98,8 @@ public class DataMapper {
      * name, from the database. Then it will return the chosen cupcaketopping
      * with its two values.
      *
-     * @param name
-     * @return
+     * @param name which is the name of the topping type
+     * @return topping that has been chosen
      */
     public CupcakeTopping getTopping(String name) {
         int price = 0;
@@ -197,7 +197,7 @@ public class DataMapper {
      * If username doesnt exists, it makes an exception
      * 
      * 
-     * @param aUser 
+     * @param aUser who is the user thats going to get the updated balance
      */
     
     
@@ -222,7 +222,7 @@ public class DataMapper {
      * It throws an exception, if the user doesnt exist
      * 
      * 
-     * @param aUser 
+     * @param aUser the user we are getting the balance of
      */
 
     public void getBalance(User aUser) {
@@ -253,7 +253,7 @@ public class DataMapper {
      * 
      * @param name
      * @param pass
-     * @return 
+     * @return true if the userinfo is valid
      */
 
     public boolean insertUser(String name, String pass) {
