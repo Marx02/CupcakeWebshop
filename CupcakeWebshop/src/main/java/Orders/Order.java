@@ -50,10 +50,25 @@ public class Order {
         }
         return totalPrice;
     }
+    
+    /**
+     * Returns the HashMap of Cupcakes 
+    * 
+     * 
+     * @return HashMap<Cupcake, Integer>
+     */
 
     public HashMap<Cupcake, Integer> getCupcakes() {
         return shoppingCart;
     }
+    
+    /**
+     * Removes a Cupcake from the shoppingCart (HashMap)
+     *
+     * 
+     * @param cc the specific Cupcake object
+     * @param qty the quantity to remove
+     */
 
     public void removeCupcake(Cupcake cc, int qty) {
         for (int i = 0; i < qty; i++) {
@@ -61,13 +76,35 @@ public class Order {
         }
     }
 
+    /**
+     * Returns the OrderID from the Order
+     * 
+     * 
+     * @return int
+     */
+    
     public int getOrderID() {
         return orderID;
     }
+    
+    /**
+     * Sets the OrderID on the Order
+     *  
+     * 
+     * 
+     * @param int orderID 
+     */
 
     public void setOrderID(int orderID) {
         this.orderID = orderID;
     }
+    
+    /**
+     * Returns an int with the totalprice of the shoppingCart
+     * Remember to use setTotalPrice() if you have not calculated the price yet.
+     * 
+     * @return 
+     */
 
     public int getTotalPrice() {
         return totalPrice;

@@ -20,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * This servlet handles storing the shoppingCart to the session
+ * 
  * @author uber
  */
 @WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
