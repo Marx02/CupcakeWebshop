@@ -251,8 +251,8 @@ public class DataMapper {
      * At last it will return true, if its made correctly and add the user
      * 
      * 
-     * @param name
-     * @param pass
+     * @param name which is the made up username
+     * @param pass which is the password thats connecting to the username
      * @return true if the userinfo is valid
      */
 
