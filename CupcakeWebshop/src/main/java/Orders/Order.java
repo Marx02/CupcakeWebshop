@@ -55,7 +55,7 @@ public class Order {
      * Returns the HashMap of Cupcakes 
     * 
      * 
-     * @return HashMap<Cupcake, Integer>
+     * @return HashMap
      */
 
     public HashMap<Cupcake, Integer> getCupcakes() {
