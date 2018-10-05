@@ -22,8 +22,10 @@ import static javax.servlet.SessionTrackingMode.URL;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author caspe
+ * This servlet handles getting the parameters from index.jsp and processing them with the DataMapper.
+ *  The User object is stored in the session for the first time here  
+ * 
+ * @author casper
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {

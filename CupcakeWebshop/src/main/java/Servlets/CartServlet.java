@@ -20,7 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * This servlet handles storing the shoppingCart to the session
+ * 
  * @author uber
  */
 @WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
@@ -45,8 +46,7 @@ public class CartServlet extends HttpServlet {
             HashMap<Cupcake, Integer> cakeList = currentUser.getUserOrder().getCupcakes();
             session.setAttribute("cakeList", cakeList);
             response.sendRedirect("/shop.jsp");
-            
-            
+
         }
     }
 
