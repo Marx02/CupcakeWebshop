@@ -34,7 +34,7 @@ public class DataMapper {
      *
      * @param uName is the username
      * @param password is the password for login, connected to the username
-     * @return User
+     * @return aUser
      */
     public User getUserInfo(String uName, String password) {
         User aUser = null;
