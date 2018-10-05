@@ -20,9 +20,9 @@ public class User {
     /**
      * Constructs a <code>User</code> object from a <code>String</code> username, <code>int</code> balance and <code>boolean</code> loggedIn. The boolean is usde to check wether the user is actually logged in.
      *
-     * @param uName
-     * @param balance
-     * @param loggedIn
+     * @param uName Username   
+     * @param balance Account balance
+     * @param loggedIn  Is the user logged in?
      */
     public User(String uName, int balance, boolean loggedIn) {
         this.uName = uName;
@@ -51,7 +51,7 @@ public class User {
     /**
      * Sets the int balance of the <code>User</code> object.
      *
-     * @param balance
+     * @param balance Account balance
      */
     public void setBalance(int balance) {
         this.balance = balance;
@@ -60,7 +60,7 @@ public class User {
     /**
      * Returns the boolean loggedIn of the <code>User</code> object.
      *
-     * @return
+     * @return logged in status
      */
     public boolean isLoggedIn() {
         return loggedIn;
@@ -69,7 +69,7 @@ public class User {
     /**
      * Sets the boolean loggedIn of the <code>User</code> object.
      *
-     * @param loggedIn
+     * @param loggedIn status
      */
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
@@ -87,7 +87,7 @@ public class User {
     /**
      * Adds a <code>Order</code> object to the list of orders int the <code>User</code> object.
      *
-     * @param userOrder
+     * @param userOrder order to be saved
      */
     public void setUserOrder(Order userOrder) {
         this.userOrder = userOrder;

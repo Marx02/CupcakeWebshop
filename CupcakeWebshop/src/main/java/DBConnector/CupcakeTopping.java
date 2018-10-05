@@ -17,8 +17,8 @@ public class CupcakeTopping {
     /**
      * Puts together the object <code>CupcakeTopping</code> from a name and a price.
      *
-     * @param name
-     * @param price
+     * @param name Name of the cupcake part
+     * @param price Price of the cupcake part
      */
     public CupcakeTopping(String name, int price) {
         this.name = name;
@@ -28,7 +28,7 @@ public class CupcakeTopping {
     /**
      * Returns the name of the <code>CupcakeBottom</code>.
      *
-     * @return
+     * @return String name
      */
     public String getName() {
         return name;
@@ -37,7 +37,7 @@ public class CupcakeTopping {
     /**
      * Returns the price of the <code>CupcakeBottom</code>.
      *
-     * @return
+     * @return int price
      */
     public int getPrice() {
         return price;

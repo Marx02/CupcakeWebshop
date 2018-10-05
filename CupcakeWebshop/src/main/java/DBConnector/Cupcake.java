@@ -18,8 +18,8 @@ public class Cupcake {
      *Takes a <code>CupcakeTopping</code> and a <code>CupcakeBottom</code>
      * and combine them into a object.
      * 
-     * @param topping
-     * @param bottom
+     * @param topping Object
+     * @param bottom Object
      */
     public Cupcake(CupcakeTopping topping, CupcakeBottom bottom) {
         this.topping = topping;

@@ -26,7 +26,7 @@ public class DataMapper {
 //    }
 
     /**
-     * Gets the username and password <code> getUserInfo </code> Check if its
+     * Gets the username and password <code>getUserInfo</code> Check if its
      * valid, by comparing the info from the database If string password is not
      * correct, it returns a user with "Wrong pass" as name If the username is
      * also incorrect, it returns a user named "Error"
