@@ -92,7 +92,7 @@ public class Order {
      *  
      * 
      * 
-     * @param int orderID 
+     * @param orderID which is int
      */
 
     public void setOrderID(int orderID) {
@@ -103,7 +103,7 @@ public class Order {
      * Returns an int with the totalprice of the shoppingCart
      * Remember to use setTotalPrice() if you have not calculated the price yet.
      * 
-     * @return 
+     * @return totalPrice which is total of order
      */
 
     public int getTotalPrice() {
