@@ -17,14 +17,25 @@ import java.util.List;
  * @author Esben
  */
 public class DataMapper {
+//  ** ONLY FOR TESTING **
+//    public static void main(String[] args) {
+//        DataMapper m = new DataMapper();
+//        System.out.println(m.getBottom("Chocolate").getPrice());
+//        System.out.println(m.getTopping("Chocolate").getPrice());
+//        System.out.println(m.getAllBottoms().get(1).getName());
+//    }
 
-    public static void main(String[] args) {
-        DataMapper m = new DataMapper();
-        System.out.println(m.getBottom("Chocolate").getPrice());
-        System.out.println(m.getTopping("Chocolate").getPrice());
-        System.out.println(m.getAllBottoms().get(1).getName());
-    }
-
+    /**
+     * Gets the username and password <code> getUserInfo </code> Check if its
+     * valid, by comparing the info from the database If string password is not
+     * correct, it returns a user with "Wrong pass" as name If the username is
+     * also incorrect, it returns a user named "Error"
+     *
+     *
+     * @param uName
+     * @param password
+     * @return User
+     */
     public User getUserInfo(String uName, String password) {
         User aUser = null;
         try {
@@ -49,6 +60,14 @@ public class DataMapper {
         return aUser;
     }
 
+    /**
+     * Gets the values "variant" and "price" of a cupcakebottom, by its string
+     * name, from the database. Then it will return the chosen cupcakebottom
+     * with its two values.
+     *
+     * @param name
+     * @return CuocakeBottom
+     */
     public CupcakeBottom getBottom(String name) {
         CupcakeBottom a = null;
         int price = 0;
@@ -74,6 +93,14 @@ public class DataMapper {
         return a;
     }
 
+    /**
+     * Gets the values "variant" and "price" of a cupcaketopping, by its string
+     * name, from the database. Then it will return the chosen cupcaketopping
+     * with its two values.
+     *
+     * @param name
+     * @return
+     */
     public CupcakeTopping getTopping(String name) {
         int price = 0;
         String variant = "";
@@ -96,6 +123,14 @@ public class DataMapper {
         CupcakeTopping b = new CupcakeTopping(variant, price);
         return b;
     }
+    
+    /**
+     * Creates an arrayList of all cupcaketoppings with its 
+     * two values (String variant, int price) from the database
+     * and then returns it as CTList
+     * 
+     * @return a full list of cupcaketoppings
+     */
 
     public ArrayList<CupcakeTopping> getAllToppings() {
         int price;
@@ -123,6 +158,14 @@ public class DataMapper {
         return CTList;
     }
 
+    /**
+     * Creates an arrayList of all cupcakebottoms with its 
+     * two values (String variant, int price) from the database
+     * and then returns it as CBList
+     * 
+     * @return a full list of cupcakebottoms
+     */
+    
     public ArrayList<CupcakeBottom> getAllBottoms() {
         int price;
         String variant;
@@ -148,6 +191,16 @@ public class DataMapper {
 
         return CBList;
     }
+    
+    /**
+     * Sets a users balance, and puts it in the database, based on the username
+     * If username doesnt exists, it makes an exception
+     * 
+     * 
+     * @param aUser 
+     */
+    
+    
 
     public void updateBalance(User aUser) {
         try {
@@ -163,6 +216,14 @@ public class DataMapper {
             ex.printStackTrace();
         }
     }
+    
+    /**
+     * Gets the current balance of a user, taken from the database.
+     * It throws an exception, if the user doesnt exist
+     * 
+     * 
+     * @param aUser 
+     */
 
     public void getBalance(User aUser) {
         try {
@@ -181,6 +242,19 @@ public class DataMapper {
             System.out.println("Balance get failed!");
         }
     }
+    
+    /**
+     * Creates a user, with the parameters name and password, 
+     * and stores it in the database. The user gets the start balance of 0
+     * If name and/or password isnt a string, it will throw an exception 
+     * and return false.
+     * At last it will return true, if its made correctly and add the user
+     * 
+     * 
+     * @param name
+     * @param pass
+     * @return 
+     */
 
     public boolean insertUser(String name, String pass) {
         try {
