@@ -25,7 +25,10 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * This servlet handles feeding shop.jsp the Cupcake options from the database using the DataMapper object
+ * Also creates a new Order object for the user, if it doesn't exist
+ * 
+ * 
  * @author caspe
  */
 @WebServlet(name = "ShopServlet", urlPatterns = {"/ShopServlet"})

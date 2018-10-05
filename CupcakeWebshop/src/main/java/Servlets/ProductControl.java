@@ -17,7 +17,10 @@ import Orders.*;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ * This servlet handles getting the input form the shop.jsp and creating the Cupcake object,
+ *  then storing it in the users Order
+ * 
+ * 
  * @author Esben
  */
 @WebServlet(name = "ProductControl", urlPatterns = {"/ProductControl"})
