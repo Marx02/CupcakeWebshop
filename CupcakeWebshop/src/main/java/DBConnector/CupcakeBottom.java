@@ -17,8 +17,8 @@ public class CupcakeBottom {
     /**
      * Puts together the object <code>CupcakeBottom</code> from a name and a price.
      *
-     * @param name
-     * @param price
+     * @param name Name of the cupcake part
+     * @param price Price of the cupcake part
      */
     public CupcakeBottom(String name, int price) {
         this.name = name;
